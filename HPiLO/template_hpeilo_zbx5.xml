@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-10-18T04:42:28Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template HPE iLO</template>
+            <name>Template HPE iLO</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>iLO</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Launch monitoring</name>
+                    <type>EXTERNAL</type>
+                    <key>hpe_ilo.sh[&quot;{HOST.NAME}&quot;,&quot;{HOST.IP}&quot;,&quot;{$ILO.USERNAME}&quot;,&quot;{$ILO.PASSWORD}&quot;]</key>
+                    <delay>10m</delay>
+                    <history>0</history>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Status BiosOrHardwareHealth</name>
+                    <type>TRAP</type>
+                    <key>ilo.BiosOrHardwareHealth</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check BIOS Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Server CPU Util</name>
+                    <type>TRAP</type>
+                    <key>ilo.CPUUtil</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;90</expression>
+                            <name>CPU utilisation more than 90% on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Server Uptime</name>
+                    <type>TRAP</type>
+                    <key>ilo.CurrentPowerOnTimeSeconds</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Status FanRedundancy</name>
+                    <type>TRAP</type>
+                    <key>ilo.FanRedundancy</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check FAN Redundancy on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Status Fans</name>
+                    <type>TRAP</type>
+                    <key>ilo.Fans</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check FANs Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Server Hostname</name>
+                    <type>TRAP</type>
+                    <key>ilo.hostname</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <inventory_link>NAME</inventory_link>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Status Memory</name>
+                    <type>TRAP</type>
+                    <key>ilo.Memory</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Memory Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Server Model</name>
+                    <type>TRAP</type>
+                    <key>ilo.model</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <inventory_link>HARDWARE</inventory_link>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Status Network</name>
+                    <type>TRAP</type>
+                    <key>ilo.Network</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Network Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Status PowerSupplies</name>
+                    <type>TRAP</type>
+                    <key>ilo.PowerSupplies</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Power Supplies Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Status PowerSupplyRedundancy</name>
+                    <type>TRAP</type>
+                    <key>ilo.PowerSupplyRedundancy</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Power Supplies Redundancy on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Status Processors</name>
+                    <type>TRAP</type>
+                    <key>ilo.Processors</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Processors Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Server Processor Count</name>
+                    <type>TRAP</type>
+                    <key>ilo.ProcessorSummary</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Server Serial Number</name>
+                    <type>TRAP</type>
+                    <key>ilo.SerialNumber</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <inventory_link>SERIALNO_A</inventory_link>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Status SmartStorageBattery</name>
+                    <type>TRAP</type>
+                    <key>ilo.SmartStorageBattery</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Smart Storage Battery Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Status Storage</name>
+                    <type>TRAP</type>
+                    <key>ilo.Storage</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Storage Health Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Status Temperatures</name>
+                    <type>TRAP</type>
+                    <key>ilo.Temperatures</key>
+                    <delay>0</delay>
+                    <history>1w</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>iLO</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Check Temperature Status on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
